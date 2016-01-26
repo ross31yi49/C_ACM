@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <string.h>
+void change(char cary[]);
+int main(void)
+{
+	char cary1[105]={0};
+	char cary2[105]={0};
+	char caryout[105];
+	int ii,iflog=0,iup=0;
+
+	scanf("%s",cary1);
+	change(cary1);
+	while(1)
+	{
+		scanf("%s",cary2);
+		change(cary2);
+		if(strlen(cary2)==1&&cary2[0]=='0')
+			break;
+		else if(iflog==0)
+		{
+			for(ii=0;;ii++)
+			{   
+				if((cary1[ii]<48||cary1[ii]>57)&&(cary2[ii]<48||cary2[ii]>57))
+					break;
+				caryout[ii]=cary1[ii]+cary2[ii]-'0';
+				if(iup==1)
+					caryout[ii]=caryout[ii]+'1';
+				if(caryout[ii]>57)
+					iup=1;
+				else if(caryout[ii]<=57)
+					iup=0;
+				if(caryout[ii]>57&&iup==1)
+					caryout[ii]=caryout[ii]-58;
+			}
+		}
+		else if(iflog==1)
+		{
+			for(ii=0;;ii++)
+			{
+				if((caryout[ii]<48||caryout[ii]>57)&&(cary2[ii]<48||cary2[ii]>57))
+					break;
+				caryout[ii]=caryout[ii]+cary2[ii]-'0';
+				if(iup==1)
+					caryout[ii]=caryout[ii]+'1';
+				if(caryout[ii]>57)
+					iup=1;
+				else if(caryout[ii]<=57)
+					iup=0;
+				if(caryout[ii]>57&&iup==1)
+					caryout[ii]=caryout[ii]-58;
+
+			}
+		}
+		for(ii=0;ii<strlen(caryout);ii++)
+			printf("%s",caryout);
+	}
+	return 0;
+}
+void change(char cary[])
+{
+	int n,i,j=0;
+	char cary2[105];
+	n=strlen(cary);
+	strcpy(cary,cary2);
+	for(i=n;i>=0;i++)
+	{
+		cary[i]=cary[j];
+		j++;
+	}
+}
+
